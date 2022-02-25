@@ -1,0 +1,64 @@
+@import "~bootstrap";
+
+body {
+    /*background-color: #F7F7F7;*/
+}
+
+.alert {
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+
+    &.alert-success {
+    background-color: green;
+    }
+    &.alert-error {
+        background-color: red;  
+    }
+
+    &.alert-info {
+        background-color: blue;
+    }
+    &.alert-warning {
+        background-color: orange;
+    }
+
+}
+
+.logo {
+    height: 50px !important;
+}
+
+.player img{
+    transition: transform 0.3s ease-out;
+    &:hover {
+        transform: scale(1.075);
+        cursor: pointer;
+    }
+}
+.div-player {
+    position: relative;
+}
+
+.player-firstname {
+    position: absolute;
+}
+
+.player-lastname {
+    top: 40px;
+}
+
+.btn-search {
+    margin-top: 30px;
+}
+
+.poste-div {
+    margin-top: 150px;
+}
+
+.player-font {
+    font-size: 13px;
+}

@@ -1,0 +1,15 @@
+<div class="mt-2 col-md-3 position absolute">
+    {{ form_start(form) }}
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        <div class="row">
+            <h5 class="text-primary">Par club</h5>
+        </div>
+        {{ form_row(form.club) }}
+        <div class="row poste-div">
+            <h5 class="text-primary">Par poste</h5>
+        </div>
+        {{ form_row(form.poste) }}
+        <button type="submit" class="btn btn-sm btn-block btn-primary btn-search" >Rechercher</button>
+    {{ form_end(form) }}
+</div>

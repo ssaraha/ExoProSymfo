@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WelcomeController!{% endblock %}
+
+{% block body %}
+    <h3 class="mt-4 text-muted text-center">Bonjour le monde</h3>
+    <div class="row">
+        {% include './layouts/_search_form_player.html.twig' with {form: form} %}
+        <div class="col-md-9 player-font">
+            {% if players|length > 0 %}
+                {% for row in players|batch(3) %}
+                    <div class="mt-2 row">
+                        {% for player in row %}
+                            <div class="col-md-4">
+                                <article class="shadow bg-white rounded player">
+                                    <div class="mw-100 p-2 overflow-hidden rounded-top div-player">
+                                        <img class="w-25 img-thumbnail mr-2 mh-100" src="{{ asset('images/img_avatar.png') }}" />
+                                        <span class="player-firstname text-muted ">
+                                            {{ player.firstname }}
+                                        </span>
+                                        <span class="player-firstname player-lastname font-weight-normal">
+                                            {{ player.lastname }}
+                                        </span>
+                                    </div>
+                                    <div class="m-2">
+                                        <span class="font-weight-normal lead">Age: </span>
+                                        <span class="text-muted font-italic">{{ getPlayerAge(player.birthday) }} ans</span>
+                                    </div>
+                                    <div class="m-2">
+                                        <span class="font-weight-normal lead">Club: </span>
+                                        <span class="text-muted font-italic">{{ player.club.name }}</span>
+                                    </div>
+                                    <div class="m-2">
+                                        <span class="font-weight-normal lead">Poste: </span>
+                                        <span class="text-muted font-italic">{{ player.poste.name }}</span>
+                                    </div>
+                                </article>
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
