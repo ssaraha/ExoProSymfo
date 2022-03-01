@@ -3,10 +3,18 @@
 {% block title %}Hello WelcomeController!{% endblock %}
 
 {% block body %}
-    <h3 class="mt-4 text-muted text-center">Bonjour le monde</h3>
+    
     <div class="row">
         {% include './layouts/_search_form_player.html.twig' with {form: form} %}
         <div class="col-md-9 player-font">
+            <div class="row">
+                <h3 class="mt-4 text-muted text-center title-player-page ">Liste des joueurs</h3>
+                <a class="bg-success text-white rounded btn-plus" 
+                   href="{{ path('app_add_player') }}" 
+                   title="Ajouter un joueur">
+                    <i class="fas fa-plus fa-fw fa-xl"></i>
+                </a> 
+            </div>
             {% if players|length > 0 %}
                 {% for row in players|batch(3) %}
                     <div class="mt-2 row">
@@ -14,7 +22,14 @@
                             <div class="col-md-4">
                                 <article class="shadow bg-white rounded player">
                                     <div class="mw-100 p-2 overflow-hidden rounded-top div-player">
-                                        <img class="w-25 img-thumbnail mr-2 mh-100" src="{{ asset('images/img_avatar.png') }}" />
+                                        <img 
+                                            class="w-25 img-thumbnail mr-2 mh-100" 
+                                            src="{{
+                                                    (player.image ? vich_uploader_asset(player) : asset('images/img_avatar.png') | imagine_filter('squared_thumbnail_small')
+                                                    ) }}"
+                                            alt="{{ player.firstname }}"
+                                        />
+                                       
                                         <span class="player-firstname text-muted ">
                                             {{ player.firstname }}
                                         </span>
@@ -32,8 +47,7 @@
                                     </div>
                                     <div class="m-2">
                                         <span class="font-weight-normal lead">Poste: </span>
-                                        <span class="text-muted font-italic">{{ player.poste.name }}</span>
-                                    </div>
+                                        <span class="text-muted font-italic">{{ player.poste.name }}</span> 
                                 </article>
 
                             </div>

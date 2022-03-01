@@ -6,12 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 use App\Repository\PlayerRepository;
 use App\Data\SearchPlayerData;
 use App\Form\SearchFormPlayer;
-
-
+use App\Form\PlayerType;
+use App\Entity\Player;
+/**
+ * 
+ * @Route("/player")
+ */ 
 class WelcomeController extends AbstractController
 {
     /**
@@ -23,20 +28,40 @@ class WelcomeController extends AbstractController
         $searchPlayerForm = $this->createForm(SearchFormPlayer::class, $spd);
         $searchPlayerForm->handleRequest($request);
 
-
-    //dd($searchPlayerForm->getData());
-        /*if( $searchPlayerForm->isSubmitted() )
-        {
-        }*/
-
        // $players = $pr->findBy([], ['createdAt' => 'DESC']);
         $players = $pr->findSearch($spd);
-        //dd($players);
         return $this->render('welcome/index.html.twig',
             [
                 'players' => $players,
                 'form' => $searchPlayerForm->createView()
             ]
         );
+    }
+
+    /**
+     * 
+     * @Route("/add", name="app_add_player")
+     */ 
+    public function showAddPlayer(Request $request, EntityManagerInterface $em)
+    {
+        $player = new Player;
+        $form = $this->createForm(PlayerType::class, $player);
+
+        $form->handleRequest($request);
+
+        if( $form->isSubmitted() && $form->isValid() )
+        {
+            $player->setCreatedAt(new \Datetime());
+            $em->persist($player);
+            $em->flush();
+
+            $this->addFlash('success', 'Joueur ajouté avec succèes');
+
+            return $this->redirectToRoute('app_welcome');
+        }
+
+        return $this->render('welcome/add.html.twig', [
+                    'form' => $form->createView()
+                ]);
     }
 }

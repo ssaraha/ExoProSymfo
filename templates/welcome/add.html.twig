@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+	<div class="row">
+		<h5 class="mt-5 text-muted text-center mx-auto">Nouveau joueur</h5>
+	</div>
+	<div class="mt-5 row">
+		<div class="col-md-3">
+			{{ form_widget(form.imageFile) }}
+			<img style="max-height: 120px; max-width: 120px;" class="mt-2 rounded-circle img-fluid" id="previewImg" src="{{ asset('images/img_avatar.png') }}"></img>
+		</div>
+		<div class="col-md-9">
+			<div class="mt-4 row">
+				<div class="col-md-3">
+					{{ form_row(form.firstname) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_row(form.lastname) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_row(form.birthday) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_row(form.nationality) }}
+				</div>
+			</div>
+			<div class="mt-4 row">
+				<div class="col-md-3">
+					{{ form_row(form.size) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_row(form.weight) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_row(form.club) }}
+				</div>
+				<div class="col-md-3">
+					{{ form_row(form.poste) }}
+				</div>
+			</div>
+			<div class="mt-4 row">
+				<button type="submit" class="btn btn-sm btn-block btn-primary" >Ajouter</button>
+			</div>
+		</div>
+	</div>
+	{{ form_end(form) }}
+{% endblock %}

@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use Doctrine\ORM\EntityRepository;
+
 use App\Data\SearchPlayerData;
 use App\Entity\Club;
 use App\Entity\Poste;
@@ -50,6 +52,10 @@ class SearchFormPlayer extends AbstractType
             ->add('poste', EntityType::class, [
                 'class'        => Poste::class,
                 'choice_label' => 'name',
+                'query_builder' => function(EntityRepository $er){
+                    return $er->createQueryBuilder('p')
+                              ->orderBy('p.name', 'ASC');
+                },
                 'label'        => false, 
                 'required'     => false,
                 'expanded'     => false,
