@@ -32,9 +32,15 @@ class Club
      */
     private $players;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Transfer::class, mappedBy="from_club")
+     */
+    private $transfers;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
+        $this->transfers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,6 +84,36 @@ class Club
             // set the owning side to null (unless already changed)
             if ($player->getClub() === $this) {
                 $player->setClub(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Transfer>
+     */
+    public function getTransfers(): Collection
+    {
+        return $this->transfers;
+    }
+
+    public function addTransfer(Transfer $transfer): self
+    {
+        if (!$this->transfers->contains($transfer)) {
+            $this->transfers[] = $transfer;
+            $transfer->setFromClub($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransfer(Transfer $transfer): self
+    {
+        if ($this->transfers->removeElement($transfer)) {
+            // set the owning side to null (unless already changed)
+            if ($transfer->getFromClub() === $this) {
+                $transfer->setFromClub(null);
             }
         }
 

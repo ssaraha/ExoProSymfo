@@ -130,6 +130,11 @@ class Player
         return $this;
     }
 
+    public function getFullName(): ?string
+    {
+         return $this->firstname.' '.$this->lastname;
+    }
+
     public function getBirthday(): ?\DateTimeInterface
     {
         return $this->birthday;

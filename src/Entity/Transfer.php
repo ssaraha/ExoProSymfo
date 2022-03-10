@@ -46,6 +46,16 @@ class Transfer
      */
     private $price;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Club::class, inversedBy="transfers")
+     */
+    private $from_club;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Club::class, inversedBy="transfers")
+     */
+    private $to_club;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +117,30 @@ class Transfer
     public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getFromClub(): ?Club
+    {
+        return $this->from_club;
+    }
+
+    public function setFromClub(?Club $from_club): self
+    {
+        $this->from_club = $from_club;
+
+        return $this;
+    }
+
+    public function getToClub(): ?club
+    {
+        return $this->to_club;
+    }
+
+    public function setToClub(?club $to_club): self
+    {
+        $this->to_club = $to_club;
 
         return $this;
     }

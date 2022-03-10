@@ -32,9 +32,8 @@ $('document').ready(function(){
 
     $("input[type=file]").on('change', function(e){
         previewFile(this);
-
-
     });
+
 });
 
 function previewFile(input){

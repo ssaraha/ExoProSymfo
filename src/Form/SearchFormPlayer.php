@@ -49,15 +49,32 @@ class SearchFormPlayer extends AbstractType
                     'class' => 'form-control-sm'
                 ]
             ])
-            ->add('poste', EntityType::class, [
+            /*->add('poste', EntityType::class, [
+                'label'        => false, 
                 'class'        => Poste::class,
                 'choice_label' => 'name',
                 'query_builder' => function(EntityRepository $er){
                     return $er->createQueryBuilder('p')
                               ->orderBy('p.name', 'ASC');
                 },
-                'label'        => false, 
                 'required'     => false,
+                'expanded'     => false,
+                'multiple'     => false,
+                'attr'         => [
+                    'class' => 'form-control-sm select-poste'
+                ]
+            ])*/
+
+
+            ->add('poste', EntityType::class, [
+                'class'        => Poste::class,
+                'choice_label' => 'name',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->orderBy('p.name', 'ASC');
+                },
+                'required'     => false,
+                'label'        => false, 
                 'expanded'     => false,
                 'multiple'     => true,
                 'attr'         => [

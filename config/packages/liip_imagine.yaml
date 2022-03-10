@@ -7,6 +7,15 @@ liip_imagine:
         squared_thumbnail_small:
             filters:
                 thumbnail:
-                    size: [75, 75]
+                    size: [100, 100]
                     mode: outbound
                     allow_upscale: true 
+
+        squared_thumbnail_very_small:
+            filters:
+                thumbnail:
+                    size: [50, 50]
+                    mode: outbound
+                    allow_upscale: true
+
+    

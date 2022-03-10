@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TransferController!{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'layouts/_search_form_transfer.html.twig' with {form} %}
+        </div>
+        <div class="col-md-9">
+            <h3 class="mb-5 text-center mx-auto text-muted ">Liste de transfer</h3>
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Photo</th>
+                        <th>Joueur</th>
+                        <th>Ancien club</th>
+                        <th>Nouveau club</th>
+                        <th>Prix de transfer</th>
+                        <th>Saison</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if transfers|length > 0 %}
+                        {% for transfer in transfers %}
+                            <tr>
+                                <td>{{ transfer.code }}</td>
+                                <td>
+                                    <img 
+                                        class="w-25 img-thumbnail mr-2 mh-100" 
+                                        src="{{
+                                                (transfer.player.image ? vich_uploader_asset(transfer) : asset('images/img_avatar.png') | imagine_filter('squared_thumbnail_small')
+                                                ) }}"
+                                        alt="{{ transfer.player.firstname }}"
+                                    />
+                                </td>
+                                <td>{{ transfer.player.fullName}}</td>
+                                <td>{{ transfer.fromClub.name}}</td>
+                                <td>{{ transfer.toClub.name}}</td>
+                                <td>{{ formatPrice(transfer.price) }} €</td>
+                                <td>{{ transfer.season.season }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

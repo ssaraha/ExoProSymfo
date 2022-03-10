@@ -48,6 +48,7 @@ class PlayerRepository extends ServiceEntityRepository
                            ->setParameter('postes', $searchPlayerData->poste);
         }
 
+        $query->orderBy('p.createdAt', 'DESC');
         
         return $query->getQuery()->getResult();
     }

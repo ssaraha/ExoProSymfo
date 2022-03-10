@@ -1,0 +1,36 @@
+<h4 class="mt-5 mb-3 text-success text-center">Rechecher un transfer</h4>
+{{ form_start(form) }}
+	<div class="row">
+		<div class="col-md-6">
+			{{ form_row(form.firstname)}}
+		</div>
+		<div class="col-md-6">
+			{{ form_row(form.lastname)}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			{{ form_row(form.from_club) }}
+		</div>
+		<div class="col-md-6">
+			{{ form_row(form.to_club) }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			{{ form_row(form.min_price) }}
+		</div>
+		<div class="col-md-6">
+			{{ form_row(form.max_price) }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			{{ form_row(form.season) }}
+		</div>
+		<div class="col-md-6">
+			<button class="btn btn-primary btn-sm btn-block" type="submit">Rechercher</button>
+		</div>
+	</div>
+
+{{ form_end(form) }}
