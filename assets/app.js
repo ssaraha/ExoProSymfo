@@ -21,11 +21,7 @@ import 'bootstrap';
 import 'select2';                       // globally assign select2 fn to $ element
 import 'select2/dist/css/select2.css';
 
-import '@fortawesome/fontawesome-free/js/fontawesome'
-import '@fortawesome/fontawesome-free/js/solid'
-import '@fortawesome/fontawesome-free/js/regular'
-import '@fortawesome/fontawesome-free/js/brands'
-
+//import '@fullcalendar/core/main.css';
 
 $('document').ready(function(){
     $('.select-poste').select2();
